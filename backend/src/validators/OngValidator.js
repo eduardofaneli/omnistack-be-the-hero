@@ -1,0 +1,15 @@
+const { celebrate, Segments, Joi } = require('celebrate');
+//\(\d{2,}\) \d{4,}\-\d{4}
+module.exports = {
+  create() {
+    return celebrate({
+      [Segments.BODY]: Joi.object().keys({
+        name: Joi.string().required(),
+        email: Joi.string().required().email(),
+        whatsapp: Joi.string().required().length(11),
+        city: Joi.string().required(),
+        uf: Joi.string().required().length(2),
+      })
+    })
+  }
+}
